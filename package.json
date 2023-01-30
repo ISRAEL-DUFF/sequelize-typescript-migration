@@ -1,5 +1,5 @@
 {
-  "name": "sequelize-typescript-migration-v2",
+  "name": "sequelize-typescript-migration-v3",
   "version": "0.0.2-beta.4",
   "description": "migration tool for sequelize & typescript users",
   "keywords": [
