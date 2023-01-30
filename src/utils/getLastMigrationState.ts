@@ -1,4 +1,4 @@
-import { SEQUELIZE_META_MIGRATION_TABLE_NAME, SEQUELIZE_META_TABLE_NAME } from "@src/constants";
+import { SEQUELIZE_META_MIGRATION_TABLE_NAME, SEQUELIZE_META_TABLE_NAME } from "../constants";
 import { Sequelize } from "sequelize-typescript";
 export default async function getLastMigrationState(sequelize: Sequelize) {
   const [

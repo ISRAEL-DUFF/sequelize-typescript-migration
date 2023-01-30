@@ -3,7 +3,7 @@ import {
   Sequelize,
   DataType as SequelizeTypescriptDataType
 } from "sequelize-typescript";
-import { SEQUELIZE_META_MIGRATION_TABLE_NAME, SEQUELIZE_META_TABLE_NAME } from "@src/constants";
+import { SEQUELIZE_META_MIGRATION_TABLE_NAME, SEQUELIZE_META_TABLE_NAME } from "../constants";
 export default async function createMigrationTable(sequelize: Sequelize) {
   const queryInterface: QueryInterface = sequelize.getQueryInterface();
   await queryInterface.createTable(SEQUELIZE_META_TABLE_NAME, {

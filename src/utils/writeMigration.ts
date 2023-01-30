@@ -2,7 +2,7 @@ import * as beautify from "js-beautify";
 import * as fs from "fs";
 import * as path from "path";
 import removeCurrentRevisionMigrations from "./removeCurrentRevisionMigrations";
-import { SEQUELIZE_META_MIGRATION_TABLE_NAME } from "@src/constants";
+import { SEQUELIZE_META_MIGRATION_TABLE_NAME } from "../constants";
 
 export default async function writeMigration(currentState, migration, options) {
     await removeCurrentRevisionMigrations(currentState.revision, options.outDir, options);
