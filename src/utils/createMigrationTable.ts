@@ -12,7 +12,9 @@ export default async function createMigrationTable(sequelize: Sequelize) {
       unique: true,
       primaryKey: true
     }
-  });
+  }, {
+      tableName: "SequelizeMeta"
+    },);
   await queryInterface.createTable("SequelizeMetaMigrations", {
     revision: {
       type: SequelizeTypescriptDataType.INTEGER,
@@ -28,5 +30,7 @@ export default async function createMigrationTable(sequelize: Sequelize) {
       type: SequelizeTypescriptDataType.JSON,
       allowNull: false
     }
-  });
+  }, {
+      tableName: "SequelizeMetaMigrations"
+    },);
 }
