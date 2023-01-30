@@ -1,7 +1,7 @@
 import {Sequelize} from "sequelize-typescript";
 import * as beautify from "js-beautify";
 import * as fs from "fs";
-import {IMigrationState} from "./constants";
+import {IMigrationState, SEQUELIZE_META_MIGRATION_TABLE_NAME} from "./constants";
 import {Model, ModelCtor, QueryInterface} from "sequelize/types";
 import getTablesFromModels from "./utils/getTablesFromModels";
 import getDiffActionsFromTables from "./utils/getDiffActionsFromTables";
@@ -123,10 +123,10 @@ export class SequelizeTypescriptMigration {
         ];
 
         try {
-            await queryInterface.bulkDelete("SequelizeMetaMigrations", {
+            await queryInterface.bulkDelete(SEQUELIZE_META_MIGRATION_TABLE_NAME, {
                 revision: currentState.revision,
             });
-            await queryInterface.bulkInsert("SequelizeMetaMigrations", rows);
+            await queryInterface.bulkInsert(SEQUELIZE_META_MIGRATION_TABLE_NAME, rows);
 
             console.log(`Use sequelize CLI:
   npx sequelize db:migrate --to ${info.revisionNumber}-${

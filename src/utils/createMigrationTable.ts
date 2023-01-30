@@ -3,19 +3,18 @@ import {
   Sequelize,
   DataType as SequelizeTypescriptDataType
 } from "sequelize-typescript";
+import { SEQUELIZE_META_MIGRATION_TABLE_NAME, SEQUELIZE_META_TABLE_NAME } from "@src/constants";
 export default async function createMigrationTable(sequelize: Sequelize) {
   const queryInterface: QueryInterface = sequelize.getQueryInterface();
-  await queryInterface.createTable("SequelizeMeta", {
+  await queryInterface.createTable(SEQUELIZE_META_TABLE_NAME, {
     name: {
       type: SequelizeTypescriptDataType.STRING,
       allowNull: false,
       unique: true,
       primaryKey: true
     }
-  }, {
-      tableName: "SequelizeMeta"
-    },);
-  await queryInterface.createTable("SequelizeMetaMigrations", {
+  });
+  await queryInterface.createTable(SEQUELIZE_META_MIGRATION_TABLE_NAME, {
     revision: {
       type: SequelizeTypescriptDataType.INTEGER,
       allowNull: false,
@@ -30,7 +29,5 @@ export default async function createMigrationTable(sequelize: Sequelize) {
       type: SequelizeTypescriptDataType.JSON,
       allowNull: false
     }
-  }, {
-      tableName: "SequelizeMetaMigrations"
-    },);
+  });
 }

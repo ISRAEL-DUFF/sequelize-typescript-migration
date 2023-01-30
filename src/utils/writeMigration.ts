@@ -2,6 +2,7 @@ import * as beautify from "js-beautify";
 import * as fs from "fs";
 import * as path from "path";
 import removeCurrentRevisionMigrations from "./removeCurrentRevisionMigrations";
+import { SEQUELIZE_META_MIGRATION_TABLE_NAME } from "@src/constants";
 
 export default async function writeMigration(currentState, migration, options) {
     await removeCurrentRevisionMigrations(currentState.revision, options.outDir, options);
@@ -19,7 +20,7 @@ export default async function writeMigration(currentState, migration, options) {
       {
         fn: "createTable",
         params: [
-          "SequelizeMetaMigrations",
+          ${SEQUELIZE_META_MIGRATION_TABLE_NAME},
           {
             "revision": {
               "primaryKey": true,
@@ -40,7 +41,7 @@ export default async function writeMigration(currentState, migration, options) {
        {
         fn: "bulkDelete",
         params: [
-          "SequelizeMetaMigrations",
+          ${SEQUELIZE_META_MIGRATION_TABLE_NAME},
           [{
             revision: info.revision
           }],
@@ -50,7 +51,7 @@ export default async function writeMigration(currentState, migration, options) {
       {
         fn: "bulkInsert",
         params: [
-          "SequelizeMetaMigrations",
+          ${SEQUELIZE_META_MIGRATION_TABLE_NAME},
           [{
             revision: info.revision,
             name: info.name,
@@ -65,7 +66,7 @@ export default async function writeMigration(currentState, migration, options) {
     {
       fn: "bulkDelete",
       params: [
-        "SequelizeMetaMigrations",
+        ${SEQUELIZE_META_MIGRATION_TABLE_NAME},
         [{
           revision: info.revision,
         }],
